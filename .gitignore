@@ -1,0 +1,24 @@
+# Entornos virtuales y cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+*.egg-info/
+
+# Checkpoints y Pesos del Modelo (evitar saturar Git con archivos binarios pesados)
+checkpoints/
+*.pth
+*.pt
+*.h5
+
+# Logs de entrenamiento y SLURM
+logs/
+*.log
+*.err
+
+# Salidas de evaluación y figuras generadas
+eval_outputs/
+
+# Dataset generado (106 MB de imágenes preprocesadas - es mejor generarlo con dataset_prep.py o subir un .zip)
+data/
