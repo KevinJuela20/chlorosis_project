@@ -89,8 +89,9 @@ class BANet(nn.Module):
     """
     Bitemporal Adapter Network (BAN) completa para supercomputador.
     """
-    def __init__(self, in_channels=3, base_channels=32):
+    def __init__(self, in_channels=3, base_channels=32, num_classes=1):
         super(BANet, self).__init__()
+        self.num_classes = num_classes
         
         # --- BRAZO SIAMÉS (Shared Encoder) ---
         # Nivel 1: Resolución 1/2 (256x256)
@@ -139,7 +140,7 @@ class BANet(nn.Module):
             nn.Conv2d(c1, c1 // 2, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(c1 // 2),
             nn.SiLU(inplace=True),
-            nn.Conv2d(c1 // 2, 1, kernel_size=1)
+            nn.Conv2d(c1 // 2, num_classes, kernel_size=1)
         )
 
     def forward_encoder(self, x):
