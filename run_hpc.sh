@@ -36,12 +36,20 @@ if command -v module &> /dev/null; then
 fi
 
 # Activar entorno Conda si existe
-if [ -d "$HOME/miniconda3/envs/ban_env" ]; then
+if command -v conda &> /dev/null; then
+    source "$(conda info --base)/etc/profile.d/conda.sh" 2>/dev/null || true
+    conda activate env_chlorosis 2>/dev/null || conda activate ban_env 2>/dev/null || true
+    echo "[HPC] Entorno conda activado: $CONDA_DEFAULT_ENV"
+elif [ -d "$HOME/miniconda3/envs/env_chlorosis" ]; then
     source "$HOME/miniconda3/etc/profile.d/conda.sh"
-    conda activate ban_env
-    echo "[HPC] Entorno conda 'ban_env' activado."
-elif [ -d "$HOME/anaconda3/envs/ban_env" ]; then
+    conda activate env_chlorosis
+    echo "[HPC] Entorno conda 'env_chlorosis' activado."
+elif [ -d "$HOME/anaconda3/envs/env_chlorosis" ]; then
     source "$HOME/anaconda3/etc/profile.d/conda.sh"
+    conda activate env_chlorosis
+    echo "[HPC] Entorno conda 'env_chlorosis' activado."
+elif [ -d "$HOME/miniconda3/envs/ban_env" ]; then
+    source "$HOME/miniconda3/etc/profile.d/conda.sh"
     conda activate ban_env
     echo "[HPC] Entorno conda 'ban_env' activado."
 fi

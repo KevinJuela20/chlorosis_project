@@ -70,8 +70,8 @@ ssh usuario@hpc.cluster.edu
 cd enfoque_BAN
 
 # Crear entorno conda (opcional si ya cuenta con PyTorch)
-conda create -n ban_env python=3.10 -y
-conda activate ban_env
+conda create -n env_chlorosis python=3.10 -y
+conda activate env_chlorosis
 pip install -r requirements.txt
 ```
 
